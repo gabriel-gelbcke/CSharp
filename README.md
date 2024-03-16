@@ -1,3 +1,3 @@
 # Projetos 
 
-Repositório de projetos da matéria de Desenvolvimento de Software (UP)
+Repositório de projetos da matéria de Tópicos Especiais de Sistemas
