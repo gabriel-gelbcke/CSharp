@@ -1,0 +1,16 @@
+### LISTAR
+GET http://localhost:5238/produto/listar/
+
+### POST
+POST http://localhost:5238/cadastrar/celular6/Android/9000/
+
+### DELETAR
+DELETE http://localhost:5238/api/produto/deletar/Celular
+
+### PUT
+PUT http://localhost:5238/api/produto/alterar/Celular2
+Content-Type: application/json
+
+{
+   "nome" : "Celular16"
+}
