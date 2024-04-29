@@ -1,0 +1,40 @@
+###LISTAR TODOS OS USUARIOS
+GET http://localhost:5297/usuario/listar
+
+### CADASTRAR USUARIO POR JSON
+POST http://localhost:5297/usuario/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Gabriel12",
+    "email" : "gabriel12@gmail.com",
+    "senha" : "senha123"
+}
+
+### ATUALIZAR USUARIO POR JSON
+PUT http://localhost:5297/usuario/atualizar/Gabriel542533
+Content-Type: application/json
+
+{
+    "nome" : "gabreuDelas",
+    "email" : "gabrielDelas@gmail.com",
+    "senha" : "senhaDelas"
+}
+
+### ATUALIZAR NOME POR URL
+PATCH http://localhost:5297/usuario/atualizar/nome/null/gabreuApenas
+
+### CADASTRAR USUARIO POR URL
+POST http://localhost:5297/usuario/cadastrar/direto/gabreu2/gabreu2@gmail.com/senha123
+
+### BUSCAR USUARIO POR NOME
+GET http://localhost:5297/usuario/buscar/nome/gabreuDelas
+
+### BUSCAR USUARIO POR ID
+GET http://localhost:5297/usuario/buscar/id/85dd27d7-e9ba-4796-bb72-55fd0c49fc98
+
+### DELETAR USUARIO POR NOME
+DELETE http://localhost:5297/usuario/deletar/gabreuDelas
+
+### DELETAR TODOS OS USUARIOS
+DELETE http://localhost:5297/usuario/deletartodos
