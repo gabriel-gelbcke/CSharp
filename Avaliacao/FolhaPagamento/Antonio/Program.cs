@@ -35,22 +35,28 @@ app.MapPost("/api/funcionario/cadastrar", ([FromBody] Funcionario funcionario, [
 
 });
 
-app.MapPost("/api/funcionario/cadastrar", ([FromBody] Funcionario funcionario, [FromServices] AppDbContext banco) =>
+app.MapPost("/api/folha/cadastrar/", ([FromBody] FolhaPagamento folhaPagamento, [FromServices] AppDbContext banco) =>
 {
-    Funcionario? funcionarioBuscaNome = banco.Funcionarios.FirstOrDefault(f => f.Nome == funcionario.Nome); 
-    Funcionario? funcionarioBuscaCpf = banco.Funcionarios.FirstOrDefault(u => u.Cpf == funcionario.Cpf);
+    FolhaPagamento? folhaBuscaId = banco.FolhaPagamentos.FirstOrDefault(f => f.Id == folhaPagamento.Id); 
 
-    if(funcionarioBuscaNome == null && funcionarioBuscaCpf == null){
+    if(folhaBuscaId == null){
         
-        banco.Funcionarios.Add(funcionario);
+        banco.FolhaPagamentos.Add(folhaPagamento);
         banco.SaveChanges();
-        return Results.Created($"/usuario/buscar/{funcionario.Id}", funcionario);
-
-    }else if(funcionarioBuscaNome != null){
-        return Results.BadRequest("Já existe um funcionario cadastrado com esse nome!"); 
+        return Results.Created($"/usuario/buscar/{folhaPagamento.Id}", folhaPagamento);
     }
-    return Results.BadRequest("Já existe um funcionario cadastrado com esse cpf!"); 
+    return Results.BadRequest(404); 
+});
 
+app.MapGet("/api/folha/listar", ([FromServices] AppDbContext banco) => 
+{
+
+    if (banco.FolhaPagamentos.Any())
+    {
+        return Results.Ok(banco.FolhaPagamentos.ToList());
+    }
+    return Results.NotFound("Não existem usuarios na tabela");
+    
 });
 
 app.Run();

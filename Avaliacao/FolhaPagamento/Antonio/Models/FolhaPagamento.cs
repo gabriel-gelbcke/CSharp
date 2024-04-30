@@ -1,49 +1,27 @@
 public class FolhaPagamento{
 
-    public FolhaPagamento()
-    {
-        Id = Guid.NewGuid().ToString();
-    }
 
-    public FolhaPagamento(Funcionario funcionario, double valor, double quantidade, double mes, double ano){
+
+    public FolhaPagamento(double valor, double quantidade, double mes, double ano){
         Valor = valor;
         Quantidade = quantidade; 
         Mes = mes;
         Ano = ano;
         Id = Guid.NewGuid().ToString();
+    }
 
-        SalarioBruto = Quantidade*Valor;
+    public FolhaPagamento()
+    {
+        Id = Guid.NewGuid().ToString();
+        CalcularSalarioBruto();
 
-        if(SalarioBruto <= 1903.98){
-            ImpostoIrrf = 0;
-        }else if(SalarioBruto >= 1903.99 && SalarioBruto <= 2826.65){
-            ImpostoIrrf = SalarioBruto*0.075 - 142.80;
-        }else if(SalarioBruto >= 2826.66 && SalarioBruto <= 3751.06){
-            ImpostoIrrf = SalarioBruto*0.15 - 354.80;
-        }else if(SalarioBruto >= 3751.06 && SalarioBruto <= 4664.68){
-            ImpostoIrrf = SalarioBruto*0.225 - 636.13;
-        }else{
-            ImpostoIrrf = SalarioBruto*0.275 - 869.36;
-        }
+        CalcularIrrf();
+        
+        CalcularInss();
 
-        if(SalarioBruto <= 1693.72){
-            ImpostoInss = SalarioBruto*0.08;
-        }else if(SalarioBruto >= 1693.73 && SalarioBruto <= 2822.90){
-            ImpostoInss = SalarioBruto*0.9;
-        }else if(SalarioBruto >= 2822.91 && SalarioBruto <= 5645.81){
-            ImpostoInss = SalarioBruto*0.11;
-        }else{
-            ImpostoInss = 621.03;
-        }
+        CalcularFgts();
 
-        ImpostoFgts = SalarioBruto*0.08;
-
-        SalarioLiquido = SalarioBruto - ImpostoIrrf - ImpostoInss;
-
-        Funcionario = funcionario;
-
-        FuncionarioId = funcionario.Id;
-
+        CalcularSalarioLiquido();
     }
 
     public string? Id {get; set;}
@@ -58,4 +36,42 @@ public class FolhaPagamento{
     public double? SalarioLiquido {get; set;}
     public Funcionario? Funcionario {get; set;}
     public string? FuncionarioId {get; set;}
+
+    public void CalcularSalarioBruto() =>
+        SalarioBruto = 2000;
+        // SalarioBruto = Quantidade * Valor;
+
+    public void CalcularIrrf() {
+        if(SalarioBruto <= 1903.98)
+            ImpostoIrrf = 0;
+        else if(SalarioBruto >= 1903.99)
+            ImpostoIrrf = SalarioBruto*0.075 - 142.80;
+        else if(SalarioBruto >= 2826.66)
+            ImpostoIrrf = SalarioBruto*0.15 - 354.80;
+        else if(SalarioBruto >= 3751.06)
+            ImpostoIrrf = SalarioBruto*0.225 - 636.13;
+        else
+            ImpostoIrrf = SalarioBruto*0.275 - 869.36;
+    }
+
+    public void CalcularInss(){
+        if(SalarioBruto <= 1693.72){
+            ImpostoInss = SalarioBruto*0.08;
+        }else if(SalarioBruto >= 1693.73 && SalarioBruto <= 2822.90){
+            ImpostoInss = SalarioBruto*0.9;
+        }else if(SalarioBruto >= 2822.91 && SalarioBruto <= 5645.81){
+            ImpostoInss = SalarioBruto*0.11;
+        }else{
+            ImpostoInss = 621.03;
+        }
+    }
+
+    public void CalcularFgts(){
+        ImpostoFgts = SalarioBruto*0.08;
+    }
+
+    public void CalcularSalarioLiquido(){
+        SalarioLiquido = SalarioBruto - ImpostoIrrf - ImpostoInss;
+    }
+        
 }

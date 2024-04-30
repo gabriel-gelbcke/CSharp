@@ -3,10 +3,25 @@ POST http://localhost:5088/api/funcionario/cadastrar
 Content-Type: application/json
 
 {
-    "nome" : "Antonio2",
-    "cpf" : "3213213212"
+    "nome" : "Antonio3",
+    "cpf" : "3213213213"
+}
+
+###
+POST http://localhost:5088/api/folha/cadastrar
+Content-Type: application/json
+
+{
+    "valor" : 50,
+    "quantidade" : 1000,
+    "mes": 10,
+    "ano" : 2023,
+    "funcionarioID" : "36acf9c5-a889-4c7a-a9a7-92d8015640f5"
 }
 
 
 ###
 GET http://localhost:5088/api/funcionario/listar
+
+###
+GET http://localhost:5088/api/folha/listar
