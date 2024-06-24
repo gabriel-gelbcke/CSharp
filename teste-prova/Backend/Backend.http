@@ -1,0 +1,24 @@
+
+### Create
+POST http://localhost:5005/api/usuario/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Cleyton23",
+    "cpf" : "134.134.134-743"
+}
+
+### Read
+GET http://localhost:5005/api/usuario/listar
+
+### Update
+PUT http://localhost:5005/api/usuario/alterar/d79e2a16-9714-4d28-860c-97fa04682f1f
+Content-Type: application/json
+
+{
+    "nome" : "Cleyton29993",
+    "cpf" : "134.134.134-74999"
+}
+
+### Delete
+DELETE http://localhost:5005/api/usuario/deletar/89a05d5d-b408-4462-9987-7fdcc48721f4
